@@ -1,4 +1,4 @@
-LIGGGHTS (Version LIGGGHTS-PUBLIC 3.8.0, compiled 2025-07-03-12:28:02 by sam, git commit 3d5c00f20519e6bb6eb6756f51f1ad36564e649d)
+LIGGGHTS (Version LIGGGHTS-PUBLIC 3.8.0, compiled 2025-07-03-12:33:27 by sam, git commit bf89d1098c0bcea26d26fb0acc78c9b297f29014)
 # to run the script you have to define the variables via '-var' option
 #  - blockiness1
 #  - blockiness2
@@ -426,20 +426,20 @@ run		1
  coefficientRestitution = [1 0.5; 0.5 0.5]
  coefficientRestitutionLog = [0 -0.693147; -0.693147 -0.693147]
 ==== WALL zwalls2 GLOBAL PROPERTIES ====
-Setting up run at Thu Jul  3 12:28:17 2025
+Setting up run at Thu Jul  3 12:43:18 2025
 
 Memory usage per processor = 22.4672 Mbytes
     Step    Atoms            rke          kin_e           vmax            CPU           Time 
        0        2              0  0.00050104329            0.1              0              0 
-       1        2              0  0.00050104329            0.1     1.9179e-05          1e-05 
-Loop time of 2.1793e-05 on 1 procs for 1 steps with 2 atoms, finish time Thu Jul  3 12:28:17 2025
+       1        2              0  0.00050104329            0.1      1.145e-05          1e-05 
+Loop time of 1.3897e-05 on 1 procs for 1 steps with 2 atoms, finish time Thu Jul  3 12:43:18 2025
 
 
-Pair  time (%) = 7.716e-06 (35.4059)
+Pair  time (%) = 4.587e-06 (33.0071)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 2.39e-07 (1.09668)
-Outpt time (%) = 7.366e-06 (33.7998)
-Other time (%) = 6.472e-06 (29.6976)
+Comm  time (%) = 1.68e-07 (1.20889)
+Outpt time (%) = 5.709e-06 (41.0808)
+Other time (%) = 3.433e-06 (24.7032)
 
 Nlocal:    2 ave 2 max 2 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
@@ -452,14 +452,14 @@ Total # of neighbors = 1
 Ave neighs/atom = 0.5
 Neighbor list builds = 0
 Dangerous builds = 0
-shell mkdir output/${output}
-shell mkdir output/post67615
-dump		dmp all custom/vtk ${writeOutEvery} output/${output}/dump*.superq.vtk type mass x y z id vx vy vz fx fy fz omegax omegay omegaz radius shapex shapey shapez quat1 quat2 quat3 quat4 blockiness1 blockiness2 tqx tqy tqz angmomx angmomy angmomz c_ctact
-dump		dmp all custom/vtk 10 output/${output}/dump*.superq.vtk type mass x y z id vx vy vz fx fy fz omegax omegay omegaz radius shapex shapey shapez quat1 quat2 quat3 quat4 blockiness1 blockiness2 tqx tqy tqz angmomx angmomy angmomz c_ctact
-dump		dmp all custom/vtk 10 output/post67615/dump*.superq.vtk type mass x y z id vx vy vz fx fy fz omegax omegay omegaz radius shapex shapey shapez quat1 quat2 quat3 quat4 blockiness1 blockiness2 tqx tqy tqz angmomx angmomy angmomz c_ctact
+shell mkdir 	${output}
+shell mkdir 	post67615
+dump		dmp all custom/vtk ${writeOutEvery} ${output}/dump*.superq.vtk type mass x y z id vx vy vz fx fy fz omegax omegay omegaz radius shapex shapey shapez quat1 quat2 quat3 quat4 blockiness1 blockiness2 tqx tqy tqz angmomx angmomy angmomz c_ctact
+dump		dmp all custom/vtk 10 ${output}/dump*.superq.vtk type mass x y z id vx vy vz fx fy fz omegax omegay omegaz radius shapex shapey shapez quat1 quat2 quat3 quat4 blockiness1 blockiness2 tqx tqy tqz angmomx angmomy angmomz c_ctact
+dump		dmp all custom/vtk 10 post67615/dump*.superq.vtk type mass x y z id vx vy vz fx fy fz omegax omegay omegaz radius shapex shapey shapez quat1 quat2 quat3 quat4 blockiness1 blockiness2 tqx tqy tqz angmomx angmomy angmomz c_ctact
 #dump 		dumpstress all mesh/gran/VTK ${writeOutEvery} post/dump*.vtk id
-dump		dmp2 all local/gran/vtk 100 output/${output}/resolution_data*.vtk resolutions
-dump		dmp2 all local/gran/vtk 100 output/post67615/resolution_data*.vtk resolutions
+dump		dmp2 all local/gran/vtk 100 ${output}/resolution_data*.vtk resolutions
+dump		dmp2 all local/gran/vtk 100 post67615/resolution_data*.vtk resolutions
 
 run		${nStepsRun} upto
 run		10000 upto
@@ -540,29 +540,29 @@ run		10000 upto
  coefficientRestitution = [1 0.5; 0.5 0.5]
  coefficientRestitutionLog = [0 -0.693147; -0.693147 -0.693147]
 ==== WALL zwalls2 GLOBAL PROPERTIES ====
-Setting up run at Thu Jul  3 12:28:17 2025
+Setting up run at Thu Jul  3 12:43:18 2025
 
 Memory usage per processor = 22.5436 Mbytes
     Step    Atoms            rke          kin_e           vmax            CPU           Time 
        1        2              0  0.00050104329            0.1              0          1e-05 
-    1000        2              0  0.00050104329            0.1    0.031994325           0.01 
-    2000        2  2.2872558e-05  0.00017491438     0.10675477    0.064545843           0.02 
-    3000        2  2.2682317e-05   0.0001733307     0.10614263    0.094722369           0.03 
-    4000        2  2.2682317e-05   0.0001733307     0.10614263     0.11890793           0.04 
-    5000        2  2.2682317e-05   0.0001733307     0.10614263     0.14351201           0.05 
-    6000        2  2.2682317e-05   0.0001733307     0.10614263     0.16834021           0.06 
-    7000        2  2.2682317e-05   0.0001733307     0.10614263     0.19301324           0.07 
-    8000        2  2.2682317e-05   0.0001733307     0.10614263     0.21812574           0.08 
-    9000        2  2.2682317e-05   0.0001733307     0.10614263      0.2429043           0.09 
-   10000        2  2.2682317e-05   0.0001733307     0.10614263     0.26729873            0.1 
-Loop time of 0.267307 on 1 procs for 9999 steps with 2 atoms, finish time Thu Jul  3 12:28:18 2025
+    1000        2              0  0.00050104329            0.1    0.024540888           0.01 
+    2000        2  2.2872558e-05  0.00017491438     0.10675477    0.049224682           0.02 
+    3000        2  2.2682317e-05   0.0001733307     0.10614263    0.073331912           0.03 
+    4000        2  2.2682317e-05   0.0001733307     0.10614263     0.09842034           0.04 
+    5000        2  2.2682317e-05   0.0001733307     0.10614263     0.12241977           0.05 
+    6000        2  2.2682317e-05   0.0001733307     0.10614263     0.14694732           0.06 
+    7000        2  2.2682317e-05   0.0001733307     0.10614263     0.17283842           0.07 
+    8000        2  2.2682317e-05   0.0001733307     0.10614263     0.19757505           0.08 
+    9000        2  2.2682317e-05   0.0001733307     0.10614263     0.22259462           0.09 
+   10000        2  2.2682317e-05   0.0001733307     0.10614263     0.24848797            0.1 
+Loop time of 0.248492 on 1 procs for 9999 steps with 2 atoms, finish time Thu Jul  3 12:43:18 2025
 
 
-Pair  time (%) = 0.0175172 (6.55321)
-Neigh time (%) = 7.3443e-05 (0.0274752)
-Comm  time (%) = 0.000392773 (0.146937)
-Outpt time (%) = 0.239584 (89.6288)
-Other time (%) = 0.00973956 (3.64359)
+Pair  time (%) = 0.0139674 (5.62085)
+Neigh time (%) = 4.647e-05 (0.0187008)
+Comm  time (%) = 0.000480583 (0.1934)
+Outpt time (%) = 0.225231 (90.6393)
+Other time (%) = 0.00876608 (3.52771)
 
 Nlocal:    2 ave 2 max 2 min
 Histogram: 1 0 0 0 0 0 0 0 0 0

@@ -115,9 +115,9 @@ compute		resolutions all pair/gran/local pos force force_normal force_tangential
 #fix write_m2 all print ${writeOutEvery} "${time} ${kin_en}" file kinetic_energy_.txt screen no
 
 run		1
-shell mkdir output/${output}
-dump		dmp all custom/vtk ${writeOutEvery} output/${output}/dump*.superq.vtk type mass x y z id vx vy vz fx fy fz omegax omegay omegaz radius shapex shapey shapez quat1 quat2 quat3 quat4 blockiness1 blockiness2 tqx tqy tqz angmomx angmomy angmomz c_ctact
+shell mkdir 	${output}
+dump		dmp all custom/vtk ${writeOutEvery} ${output}/dump*.superq.vtk type mass x y z id vx vy vz fx fy fz omegax omegay omegaz radius shapex shapey shapez quat1 quat2 quat3 quat4 blockiness1 blockiness2 tqx tqy tqz angmomx angmomy angmomz c_ctact
 #dump 		dumpstress all mesh/gran/VTK ${writeOutEvery} post/dump*.vtk id
-dump		dmp2 all local/gran/vtk 100 output/${output}/resolution_data*.vtk resolutions 
+dump		dmp2 all local/gran/vtk 100 ${output}/resolution_data*.vtk resolutions 
 
 run		${nStepsRun} upto

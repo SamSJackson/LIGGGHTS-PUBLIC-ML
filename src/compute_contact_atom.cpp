@@ -262,13 +262,15 @@ void ComputeContactAtom::compute_peratom()
 				particleB = Superquadric(xj, quatB, shapeB, blockB);
 
 				fail = MathExtraLiggghtsNonspherical::calc_contact_point_if_no_previous_point_available(
-						*particleA,
-						*particleB,
+						&particleA,
+						&particleB,
 						cpoint,
 						fi,
 						fj,
 						error  
 				);
+
+				fprintf(screen, "Completed this: %d\n", fail);
 
 				if (fail) {
 					contact[i] += 1.0;

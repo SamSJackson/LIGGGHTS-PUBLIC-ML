@@ -66,7 +66,7 @@ namespace MathExtraLiggghtsNonspherical {
 
   bool capsules_intersect(Superquadric *particle_i, Superquadric *particle_j, double *capsule_contact_point);
 
-  bool calc_contact_point_if_no_previous_point_avaialable(SurfacesIntersectData & sidata, Superquadric *particle_i, Superquadric *particle_j,
+  bool calc_contact_point_if_no_previous_point_available(Superquadric *particle_i, Superquadric *particle_j,
       double *contact_point, double &fi, double &fj,LAMMPS_NS::Error *error);
   bool calc_contact_point_using_prev_step(SurfacesIntersectData & sidata, Superquadric *particle_i, Superquadric *particle_j,
       double ratio, double dt, double *prev_step_point, double *contact_point, double &fi, double &fj, LAMMPS_NS::Error *error);

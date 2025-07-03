@@ -144,7 +144,7 @@ namespace ContactModels
         double ratio = ri / (ri + rj);
 
         if(*particles_were_in_contact == SURFACES_FAR)
-          calc_contact_point_if_no_previous_point_avaialable(sidata, &particle_i, &particle_j, sidata.contact_point, fi, fj, this->error);
+          calc_contact_point_if_no_previous_point_available(&particle_i, &particle_j, sidata.contact_point, fi, fj, this->error);
         else
           calc_contact_point_using_prev_step(sidata, &particle_i, &particle_j, ratio, update->dt, prev_step_point, sidata.contact_point, fi, fj, this->error);
         vectorCopy3D(sidata.contact_point, prev_step_point); //store contact point in contact history for the next DEM time step

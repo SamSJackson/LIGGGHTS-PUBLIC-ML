@@ -14,15 +14,16 @@ newton		off
 communicate	single vel yes
 units		si
 
-region		reg block -0.05 0.05 -0.05 0.05 0.0 0.1 units box
+#region		reg block -0.5 0.5 -0.5 0.5 -0.5 0.5 units box
+region		reg block -0.1 0.1 -0.1 0.1 -0.1 0.1 units box
 create_box	2 reg
 
-neighbor	0.002 bin
+neighbor	0.001 bin
 neigh_modify	delay 0
 
 variable dt equal 1e-5
-variable nStepsRun    equal 1.0/${dt}
-variable writeOutEvery equal 0.005/${dt}
+variable nStepsRun    equal 0.1/${dt}
+variable writeOutEvery equal 1e-4/${dt}
 variable thermofreq   equal 0.01/${dt}
 
 variable cf_ww equal 1.0
@@ -65,19 +66,19 @@ variable totaltime equal step*${dt}
 #fix		inface all mesh/surface file meshes/insertion_face.stl type 1
 #fix granwalls all wall/gran model hertz tangential history surface superquadric mesh n_meshes 1 meshes cad
 
-fix xwalls1 all wall/gran model hertz tangential history rolling_friction epsd2 surface superquadric primitive type 1 xplane -0.05
-fix xwalls2 all wall/gran model hertz tangential history rolling_friction epsd2 surface superquadric primitive type 1 xplane 0.05
-fix ywalls1 all wall/gran model hertz tangential history rolling_friction epsd2 surface superquadric primitive type 1 yplane -0.05
-fix ywalls2 all wall/gran model hertz tangential history rolling_friction epsd2 surface superquadric primitive type 1 yplane 0.05
-fix zwalls1 all wall/gran model hertz tangential history rolling_friction epsd2 surface superquadric primitive type 1 zplane 0.0
+fix xwalls1 all wall/gran model hertz tangential history rolling_friction epsd2 surface superquadric primitive type 1 xplane -0.1
+fix xwalls2 all wall/gran model hertz tangential history rolling_friction epsd2 surface superquadric primitive type 1 xplane 0.1
+fix ywalls1 all wall/gran model hertz tangential history rolling_friction epsd2 surface superquadric primitive type 1 yplane -0.1
+fix ywalls2 all wall/gran model hertz tangential history rolling_friction epsd2 surface superquadric primitive type 1 yplane 0.1
+fix zwalls1 all wall/gran model hertz tangential history rolling_friction epsd2 surface superquadric primitive type 1 zplane -0.1
 fix zwalls2 all wall/gran model hertz tangential history rolling_friction epsd2 surface superquadric primitive type 1 zplane 0.1
 
 
-create_atoms 1 single 0.0 0.0 0.01
-set atom 1 type 2 shape 0.002 0.002 0.004 blockiness ${blockiness1} ${blockiness2} density 2500 vz 0.1 quat 1 0 0 ${angle} #omegaz 10
+create_atoms 1 single 0.0 0.0 0.0
+set atom 1 type 2 shape ${sxo} ${syo} ${szo} blockiness ${blockiness1} ${blockiness2} density 2500 vx ${vxo} vy ${vyo} vz ${vzo}
 
-create_atoms 1 single 0.0 0.0 0.09
-set atom 2 type 2 shape 0.002 0.002 0.004 blockiness ${blockiness1} ${blockiness2} density 2500 vz -0.1 quat 1 0 0 -${angle} #omegaz 10
+create_atoms 1 single ${posx} ${posy} ${posz}
+set atom 2 type 2 shape ${sxc} ${syc} ${szc} blockiness ${blockiness1} ${blockiness2} density 2500 vx ${vxc} vy ${vyc} vz ${vzc} quat ${qx} ${qy} ${qz} ${angle} 
 
 group		nve_group region reg
 
@@ -90,8 +91,6 @@ variable time equal step*${dt}
 
 compute		rke all erotate/superquadric
 compute		kin_e all ke
-#variable rot_en equal c_rke
-#variable kin_en equal c_kin_e
 
 variable vel atom sqrt(vx*vx+vy*vy+vz*vz)
 compute vmax all reduce max v_vel
@@ -102,14 +101,23 @@ thermo		${thermofreq}
 thermo_modify	lost ignore norm no
 compute_modify	thermo_temp dynamic yes
 
+## Compute contact information
+compute		ctact all contact/atom
+#compute		cds all coord/atom 0.002
+
+### Contact resolution for superquadrics 
+compute		resolutions all pair/gran/local pos force force_normal force_tangential contactArea delta
+	
+
 #insert the first particles so that dump is not empty
 
 #fix write_m1 all print ${writeOutEvery} "${time} ${rot_en}" file rotational_energy_.txt screen no
 #fix write_m2 all print ${writeOutEvery} "${time} ${kin_en}" file kinetic_energy_.txt screen no
 
 run		1
-shell mkdir post
-dump		dmp all custom/vtk ${writeOutEvery} post/dump*.superq.vtk type mass x y z id vx vy vz fx fy fz omegax omegay omegaz radius shapex shapey shapez quat1 quat2 quat3 quat4 blockiness1 blockiness2 tqx tqy tqz angmomx angmomy angmomz
+shell mkdir output/${output}
+dump		dmp all custom/vtk ${writeOutEvery} output/${output}/dump*.superq.vtk type mass x y z id vx vy vz fx fy fz omegax omegay omegaz radius shapex shapey shapez quat1 quat2 quat3 quat4 blockiness1 blockiness2 tqx tqy tqz angmomx angmomy angmomz c_ctact
 #dump 		dumpstress all mesh/gran/VTK ${writeOutEvery} post/dump*.vtk id
+dump		dmp2 all local/gran/vtk 100 output/${output}/resolution_data*.vtk resolutions 
 
 run		${nStepsRun} upto

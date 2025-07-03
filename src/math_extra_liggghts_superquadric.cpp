@@ -1388,7 +1388,7 @@ bool capsules_intersect(Superquadric *particleA, Superquadric *particleB, double
 }
 
 //calculate the contact point if no information about from the previous step available
-bool calc_contact_point_if_no_previous_point_avaialable(SurfacesIntersectData & sidata, Superquadric *particleA,
+bool calc_contact_point_if_no_previous_point_available(Superquadric *particleA,
     Superquadric *particleB, double *contact_point, double &fi, double &fj, LAMMPS_NS::Error *error)
 {
   bool fail_flag = false;

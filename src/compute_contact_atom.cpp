@@ -65,6 +65,12 @@
 #include "memory.h"
 #include "error.h"
 
+// sam:
+#ifdef SUPERQUADRIC_ACTIVE_FLAG
+  #include "math_extra_liggghts_superquadric.h" 
+  #include <iostream>
+#endif 
+
 using namespace LAMMPS_NS;
 
 /* ---------------------------------------------------------------------- */
@@ -138,7 +144,142 @@ void ComputeContactAtom::init_list(int id, NeighList *ptr)
 }
 
 /* ---------------------------------------------------------------------- */
+// sam: update this function
 
+#ifdef SUPERQUADRIC_ACTIVE_FLAG
+void ComputeContactAtom::compute_peratom()
+{
+	int *ilist, *jlist, *numneigh, **firstneigh;
+	int inum, jnum;
+	double xtmp, ytmp, ztmp, delx, dely, delz, rsq;
+	double radi, radsum, radsumsq;
+
+	// narrow-phase variables
+	double shapeA[3], shapeB[3], blockA[2], blockB[2], quatA[4], quatB[4];
+	double xi[3], xj[3], cpoint[3];
+	double fi, fj; 
+	bool fail;
+	
+	invoked_peratom = update->ntimestep;
+
+	if (atom->nmax > nmax) {
+		memory->destroy(contact);
+		nmax = atom->nmax;
+		memory->create(contact,nmax,"contact/atom:contact");
+		vector_atom = contact;
+	}
+
+	neighbor->build_one(list->index);
+
+	inum = list->inum;
+	ilist = list->ilist;
+	numneigh = list->numneigh;
+	firstneigh = list->firstneigh;
+
+	// sam-TODO: Do I need to include nghost?
+	// Need to determine if this is narrow/broad detection
+
+	// sam-NOTE: atom is the class object, not necessarily one atom 
+	double **x = atom->x;
+	double *radius = atom->radius;
+	int *mask = atom->mask;
+	int nlocal = atom->nlocal;
+	int nall = nlocal + atom->nghost;
+
+	// narrow-phase variables
+	double **shape = atom->shape;
+	double **blockiness = atom->blockiness;
+	double **quaternion = atom->quaternion;
+
+	Superquadric particleA;
+	Superquadric particleB;
+
+	for (int i=0; i < nall; i++) contact[i] = 0.0;
+
+	// investigate interactions of every pair
+	for (int ii=0; ii < inum; ii++) {
+		fail = false;
+		int i = ilist[ii];
+		if (mask[i] & groupbit) {
+			jlist = firstneigh[i];
+			jnum = numneigh[i];
+
+			xtmp = x[i][0];	
+			xtmp = x[i][1];	
+			xtmp = x[i][2];	
+			radi = radius[i];
+
+			for (int jj=0; jj < jnum; jj++) {
+				int j = jlist[jj];
+				j &= NEIGHMASK;
+	
+				// broad-phase
+				delx = xtmp - x[j][0];
+				dely = ytmp - x[j][1];
+				delz = ztmp - x[j][2];
+				rsq = delx*delx + dely*dely + delz*delz;
+				radsum = radi + radius[j] + skin;
+				radsumsq = radsum * radsum;
+				// if min bounding spheres don't overlap, skip
+				if (rsq > radsumsq) continue;
+				// narrow-phase
+
+				// TODO: move this into superquadric.cpp as initialiser 
+				shapeA[0] = shape[i][0];
+				shapeA[1] = shape[i][1];
+				shapeA[2] = shape[i][2];
+
+				shapeB[0] = shape[j][0];
+				shapeB[1] = shape[j][1];
+				shapeB[2] = shape[j][2];
+
+				blockA[0] = blockiness[i][0];
+				blockA[1] = blockiness[i][1];
+
+				blockB[0] = blockiness[j][0];
+				blockB[1] = blockiness[j][1];
+
+				quatA[0] = quaternion[i][0];
+				quatA[1] = quaternion[i][1];
+				quatA[2] = quaternion[i][2];
+				quatA[3] = quaternion[i][3];
+
+				quatB[0] = quaternion[j][0];
+				quatB[1] = quaternion[j][1];
+				quatB[2] = quaternion[j][2];
+				quatB[3] = quaternion[j][3];
+
+				xi[0] = x[i][0];
+				xi[1] = x[i][1];
+				xi[2] = x[i][2];
+
+				xj[0] = x[j][0];
+				xj[1] = x[j][1];
+				xj[2] = x[j][2];
+				// move above into superquadric.cpp 
+
+				particleA = Superquadric(xi, quatA, shapeA, blockA);
+				particleB = Superquadric(xj, quatB, shapeB, blockB);
+
+				fail = MathExtraLiggghtsNonspherical::calc_contact_point_if_no_previous_point_available(
+						*particleA,
+						*particleB,
+						cpoint,
+						fi,
+						fj,
+						error  
+				);
+
+				if (fail) {
+					contact[i] += 1.0;
+					contact[j] += 1.0;
+				}
+			}
+		}
+	}
+}
+
+#else
 void ComputeContactAtom::compute_peratom()
 {
   int i,j,ii,jj,inum,jnum;
@@ -210,6 +351,7 @@ void ComputeContactAtom::compute_peratom()
 
   if (force->newton_pair) comm->reverse_comm_compute(this);
 }
+#endif
 
 /* ---------------------------------------------------------------------- */
 

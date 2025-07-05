@@ -1,4 +1,4 @@
-LIGGGHTS (Version LIGGGHTS-PUBLIC 3.8.0, compiled 2025-07-03-12:33:27 by sam, git commit bf89d1098c0bcea26d26fb0acc78c9b297f29014)
+LIGGGHTS (Version LIGGGHTS-PUBLIC 3.8.0, compiled 2025-07-05-12:07:21 by sam, git commit db5847fe4b4f3a6be98ad5130bec621255c55c03)
 # to run the script you have to define the variables via '-var' option
 #  - blockiness1
 #  - blockiness2
@@ -87,20 +87,6 @@ WARNING:
 	If you perform one of the steps above LIGGGHTS(R) needs to be recompiled to generate the optimized code.
 
  (../contact_models.h:365)
-==== PAIR SETTINGS ====
- computeDissipatedEnergy = off
- computeElasticPotential = off
- curvatureLimitFactor = 0
- disableNormalWhenBonded = off
- gaussianCurvature = no
- heating_normal_hertz = off
- heating_tangential_history = off
- heating_tracking = off
- limitForce = off
- meanCurvature = no
- tangential_damping = on
- torsionTorque = off
-==== PAIR SETTINGS ====
 pair_coeff	* *
 timestep ${dt}
 timestep 1e-05
@@ -123,20 +109,6 @@ WARNING:
 	If you perform one of the steps above LIGGGHTS(R) needs to be recompiled to generate the optimized code.
 
  (../contact_models.h:365)
-==== WALL xwalls1 SETTINGS ====
- computeDissipatedEnergy = off
- computeElasticPotential = off
- curvatureLimitFactor = 0
- disableNormalWhenBonded = off
- gaussianCurvature = no
- heating_normal_hertz = off
- heating_tangential_history = off
- heating_tracking = off
- limitForce = off
- meanCurvature = no
- tangential_damping = on
- torsionTorque = off
-==== WALL xwalls1 SETTINGS ====
 fix xwalls2 all wall/gran model hertz tangential history rolling_friction epsd2 surface superquadric primitive type 1 xplane 0.1
 WARNING: 
 	The contact model you specified is not located in any whitelist.
@@ -148,20 +120,6 @@ WARNING:
 	If you perform one of the steps above LIGGGHTS(R) needs to be recompiled to generate the optimized code.
 
  (../contact_models.h:365)
-==== WALL xwalls2 SETTINGS ====
- computeDissipatedEnergy = off
- computeElasticPotential = off
- curvatureLimitFactor = 0
- disableNormalWhenBonded = off
- gaussianCurvature = no
- heating_normal_hertz = off
- heating_tangential_history = off
- heating_tracking = off
- limitForce = off
- meanCurvature = no
- tangential_damping = on
- torsionTorque = off
-==== WALL xwalls2 SETTINGS ====
 fix ywalls1 all wall/gran model hertz tangential history rolling_friction epsd2 surface superquadric primitive type 1 yplane -0.1
 WARNING: 
 	The contact model you specified is not located in any whitelist.
@@ -173,20 +131,6 @@ WARNING:
 	If you perform one of the steps above LIGGGHTS(R) needs to be recompiled to generate the optimized code.
 
  (../contact_models.h:365)
-==== WALL ywalls1 SETTINGS ====
- computeDissipatedEnergy = off
- computeElasticPotential = off
- curvatureLimitFactor = 0
- disableNormalWhenBonded = off
- gaussianCurvature = no
- heating_normal_hertz = off
- heating_tangential_history = off
- heating_tracking = off
- limitForce = off
- meanCurvature = no
- tangential_damping = on
- torsionTorque = off
-==== WALL ywalls1 SETTINGS ====
 fix ywalls2 all wall/gran model hertz tangential history rolling_friction epsd2 surface superquadric primitive type 1 yplane 0.1
 WARNING: 
 	The contact model you specified is not located in any whitelist.
@@ -198,20 +142,6 @@ WARNING:
 	If you perform one of the steps above LIGGGHTS(R) needs to be recompiled to generate the optimized code.
 
  (../contact_models.h:365)
-==== WALL ywalls2 SETTINGS ====
- computeDissipatedEnergy = off
- computeElasticPotential = off
- curvatureLimitFactor = 0
- disableNormalWhenBonded = off
- gaussianCurvature = no
- heating_normal_hertz = off
- heating_tangential_history = off
- heating_tracking = off
- limitForce = off
- meanCurvature = no
- tangential_damping = on
- torsionTorque = off
-==== WALL ywalls2 SETTINGS ====
 fix zwalls1 all wall/gran model hertz tangential history rolling_friction epsd2 surface superquadric primitive type 1 zplane -0.1
 WARNING: 
 	The contact model you specified is not located in any whitelist.
@@ -223,20 +153,6 @@ WARNING:
 	If you perform one of the steps above LIGGGHTS(R) needs to be recompiled to generate the optimized code.
 
  (../contact_models.h:365)
-==== WALL zwalls1 SETTINGS ====
- computeDissipatedEnergy = off
- computeElasticPotential = off
- curvatureLimitFactor = 0
- disableNormalWhenBonded = off
- gaussianCurvature = no
- heating_normal_hertz = off
- heating_tangential_history = off
- heating_tracking = off
- limitForce = off
- meanCurvature = no
- tangential_damping = on
- torsionTorque = off
-==== WALL zwalls1 SETTINGS ====
 fix zwalls2 all wall/gran model hertz tangential history rolling_friction epsd2 surface superquadric primitive type 1 zplane 0.1
 WARNING: 
 	The contact model you specified is not located in any whitelist.
@@ -248,20 +164,6 @@ WARNING:
 	If you perform one of the steps above LIGGGHTS(R) needs to be recompiled to generate the optimized code.
 
  (../contact_models.h:365)
-==== WALL zwalls2 SETTINGS ====
- computeDissipatedEnergy = off
- computeElasticPotential = off
- curvatureLimitFactor = 0
- disableNormalWhenBonded = off
- gaussianCurvature = no
- heating_normal_hertz = off
- heating_tangential_history = off
- heating_tracking = off
- limitForce = off
- meanCurvature = no
- tangential_damping = on
- torsionTorque = off
-==== WALL zwalls2 SETTINGS ====
 
 
 create_atoms 1 single 0.0 0.0 0.0
@@ -284,9 +186,9 @@ set atom 1 type 2 shape 0.01315 0.01315 0.01315 blockiness 3 2 density 2500 vx 0
   1 settings made for vz
 
 create_atoms 1 single ${posx} ${posy} ${posz}
-create_atoms 1 single 0.030952849864947913 ${posy} ${posz}
-create_atoms 1 single 0.030952849864947913 0.010352530927466007 ${posz}
-create_atoms 1 single 0.030952849864947913 0.010352530927466007 -0.016865357010890186
+create_atoms 1 single 0.05 ${posy} ${posz}
+create_atoms 1 single 0.05 0.05 ${posz}
+create_atoms 1 single 0.05 0.05 -0.05
 Created 1 atoms
 set atom 2 type 2 shape ${sxc} ${syc} ${szc} blockiness ${blockiness1} ${blockiness2} density 2500 vx ${vxc} vy ${vyc} vz ${vzc} quat ${qx} ${qy} ${qz} ${angle}
 set atom 2 type 2 shape 0.017800000000000014 ${syc} ${szc} blockiness ${blockiness1} ${blockiness2} density 2500 vx ${vxc} vy ${vyc} vz ${vzc} quat ${qx} ${qy} ${qz} ${angle}
@@ -349,107 +251,30 @@ compute		resolutions all pair/gran/local pos force force_normal force_tangential
 #fix write_m2 all print ${writeOutEvery} "${time} ${kin_en}" file kinetic_energy_.txt screen no
 
 run		1
-==== PAIR GLOBAL PROPERTIES ====
- poissonsRatio = [0.3 0.3]
- youngsModulus = [1e+07 1e+07]
- Geff = [1.13122e+06 1.13122e+06; 1.13122e+06 1.13122e+06]
- Yeff = [5.49451e+06 5.49451e+06; 5.49451e+06 5.49451e+06]
- betaeff = [0 -0.215454; -0.215454 -0.215454]
- coeffFrict = [0.5 0.5; 0.5 0.5]
- coeffRollFrict = [0 0.05; 0.05 0.05]
- coefficientRestitution = [1 0.5; 0.5 0.5]
- coefficientRestitutionLog = [0 -0.693147; -0.693147 -0.693147]
-==== PAIR GLOBAL PROPERTIES ====
-==== WALL xwalls1 GLOBAL PROPERTIES ====
- poissonsRatio = [0.3 0.3]
- youngsModulus = [1e+07 1e+07]
- Geff = [1.13122e+06 1.13122e+06; 1.13122e+06 1.13122e+06]
- Yeff = [5.49451e+06 5.49451e+06; 5.49451e+06 5.49451e+06]
- betaeff = [0 -0.215454; -0.215454 -0.215454]
- coeffFrict = [0.5 0.5; 0.5 0.5]
- coeffRollFrict = [0 0.05; 0.05 0.05]
- coefficientRestitution = [1 0.5; 0.5 0.5]
- coefficientRestitutionLog = [0 -0.693147; -0.693147 -0.693147]
-==== WALL xwalls1 GLOBAL PROPERTIES ====
-==== WALL xwalls2 GLOBAL PROPERTIES ====
- poissonsRatio = [0.3 0.3]
- youngsModulus = [1e+07 1e+07]
- Geff = [1.13122e+06 1.13122e+06; 1.13122e+06 1.13122e+06]
- Yeff = [5.49451e+06 5.49451e+06; 5.49451e+06 5.49451e+06]
- betaeff = [0 -0.215454; -0.215454 -0.215454]
- coeffFrict = [0.5 0.5; 0.5 0.5]
- coeffRollFrict = [0 0.05; 0.05 0.05]
- coefficientRestitution = [1 0.5; 0.5 0.5]
- coefficientRestitutionLog = [0 -0.693147; -0.693147 -0.693147]
-==== WALL xwalls2 GLOBAL PROPERTIES ====
-==== WALL ywalls1 GLOBAL PROPERTIES ====
- poissonsRatio = [0.3 0.3]
- youngsModulus = [1e+07 1e+07]
- Geff = [1.13122e+06 1.13122e+06; 1.13122e+06 1.13122e+06]
- Yeff = [5.49451e+06 5.49451e+06; 5.49451e+06 5.49451e+06]
- betaeff = [0 -0.215454; -0.215454 -0.215454]
- coeffFrict = [0.5 0.5; 0.5 0.5]
- coeffRollFrict = [0 0.05; 0.05 0.05]
- coefficientRestitution = [1 0.5; 0.5 0.5]
- coefficientRestitutionLog = [0 -0.693147; -0.693147 -0.693147]
-==== WALL ywalls1 GLOBAL PROPERTIES ====
-==== WALL ywalls2 GLOBAL PROPERTIES ====
- poissonsRatio = [0.3 0.3]
- youngsModulus = [1e+07 1e+07]
- Geff = [1.13122e+06 1.13122e+06; 1.13122e+06 1.13122e+06]
- Yeff = [5.49451e+06 5.49451e+06; 5.49451e+06 5.49451e+06]
- betaeff = [0 -0.215454; -0.215454 -0.215454]
- coeffFrict = [0.5 0.5; 0.5 0.5]
- coeffRollFrict = [0 0.05; 0.05 0.05]
- coefficientRestitution = [1 0.5; 0.5 0.5]
- coefficientRestitutionLog = [0 -0.693147; -0.693147 -0.693147]
-==== WALL ywalls2 GLOBAL PROPERTIES ====
-==== WALL zwalls1 GLOBAL PROPERTIES ====
- poissonsRatio = [0.3 0.3]
- youngsModulus = [1e+07 1e+07]
- Geff = [1.13122e+06 1.13122e+06; 1.13122e+06 1.13122e+06]
- Yeff = [5.49451e+06 5.49451e+06; 5.49451e+06 5.49451e+06]
- betaeff = [0 -0.215454; -0.215454 -0.215454]
- coeffFrict = [0.5 0.5; 0.5 0.5]
- coeffRollFrict = [0 0.05; 0.05 0.05]
- coefficientRestitution = [1 0.5; 0.5 0.5]
- coefficientRestitutionLog = [0 -0.693147; -0.693147 -0.693147]
-==== WALL zwalls1 GLOBAL PROPERTIES ====
-==== WALL zwalls2 GLOBAL PROPERTIES ====
- poissonsRatio = [0.3 0.3]
- youngsModulus = [1e+07 1e+07]
- Geff = [1.13122e+06 1.13122e+06; 1.13122e+06 1.13122e+06]
- Yeff = [5.49451e+06 5.49451e+06; 5.49451e+06 5.49451e+06]
- betaeff = [0 -0.215454; -0.215454 -0.215454]
- coeffFrict = [0.5 0.5; 0.5 0.5]
- coeffRollFrict = [0 0.05; 0.05 0.05]
- coefficientRestitution = [1 0.5; 0.5 0.5]
- coefficientRestitutionLog = [0 -0.693147; -0.693147 -0.693147]
-==== WALL zwalls2 GLOBAL PROPERTIES ====
-Setting up run at Thu Jul  3 12:43:18 2025
+Setting up run at Sat Jul  5 12:16:48 2025
 
 Memory usage per processor = 22.4672 Mbytes
     Step    Atoms            rke          kin_e           vmax            CPU           Time 
        0        2              0  0.00050104329            0.1              0              0 
-       1        2              0  0.00050104329            0.1      1.145e-05          1e-05 
-Loop time of 1.3897e-05 on 1 procs for 1 steps with 2 atoms, finish time Thu Jul  3 12:43:18 2025
+       1        2              0  0.00050104329            0.1      8.592e-06          1e-05 
+Loop time of 1.0882e-05 on 1 procs for 1 steps with 2 atoms, finish time Sat Jul  5 12:16:48 2025
 
 
-Pair  time (%) = 4.587e-06 (33.0071)
+Pair  time (%) = 3.55e-07 (3.26227)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 1.68e-07 (1.20889)
-Outpt time (%) = 5.709e-06 (41.0808)
-Other time (%) = 3.433e-06 (24.7032)
+Comm  time (%) = 1.77e-07 (1.62654)
+Outpt time (%) = 5.174e-06 (47.5464)
+Other time (%) = 5.176e-06 (47.5648)
 
 Nlocal:    2 ave 2 max 2 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 Nghost:    0 ave 0 max 0 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-Neighs:    1 ave 1 max 1 min
+Neighs:    0 ave 0 max 0 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 
-Total # of neighbors = 1
-Ave neighs/atom = 0.5
+Total # of neighbors = 0
+Ave neighs/atom = 0
 Neighbor list builds = 0
 Dangerous builds = 0
 shell mkdir 	${output}
@@ -463,115 +288,38 @@ dump		dmp2 all local/gran/vtk 100 post67615/resolution_data*.vtk resolutions
 
 run		${nStepsRun} upto
 run		10000 upto
-==== PAIR GLOBAL PROPERTIES ====
- poissonsRatio = [0.3 0.3]
- youngsModulus = [1e+07 1e+07]
- Geff = [1.13122e+06 1.13122e+06; 1.13122e+06 1.13122e+06]
- Yeff = [5.49451e+06 5.49451e+06; 5.49451e+06 5.49451e+06]
- betaeff = [0 -0.215454; -0.215454 -0.215454]
- coeffFrict = [0.5 0.5; 0.5 0.5]
- coeffRollFrict = [0 0.05; 0.05 0.05]
- coefficientRestitution = [1 0.5; 0.5 0.5]
- coefficientRestitutionLog = [0 -0.693147; -0.693147 -0.693147]
-==== PAIR GLOBAL PROPERTIES ====
-==== WALL xwalls1 GLOBAL PROPERTIES ====
- poissonsRatio = [0.3 0.3]
- youngsModulus = [1e+07 1e+07]
- Geff = [1.13122e+06 1.13122e+06; 1.13122e+06 1.13122e+06]
- Yeff = [5.49451e+06 5.49451e+06; 5.49451e+06 5.49451e+06]
- betaeff = [0 -0.215454; -0.215454 -0.215454]
- coeffFrict = [0.5 0.5; 0.5 0.5]
- coeffRollFrict = [0 0.05; 0.05 0.05]
- coefficientRestitution = [1 0.5; 0.5 0.5]
- coefficientRestitutionLog = [0 -0.693147; -0.693147 -0.693147]
-==== WALL xwalls1 GLOBAL PROPERTIES ====
-==== WALL xwalls2 GLOBAL PROPERTIES ====
- poissonsRatio = [0.3 0.3]
- youngsModulus = [1e+07 1e+07]
- Geff = [1.13122e+06 1.13122e+06; 1.13122e+06 1.13122e+06]
- Yeff = [5.49451e+06 5.49451e+06; 5.49451e+06 5.49451e+06]
- betaeff = [0 -0.215454; -0.215454 -0.215454]
- coeffFrict = [0.5 0.5; 0.5 0.5]
- coeffRollFrict = [0 0.05; 0.05 0.05]
- coefficientRestitution = [1 0.5; 0.5 0.5]
- coefficientRestitutionLog = [0 -0.693147; -0.693147 -0.693147]
-==== WALL xwalls2 GLOBAL PROPERTIES ====
-==== WALL ywalls1 GLOBAL PROPERTIES ====
- poissonsRatio = [0.3 0.3]
- youngsModulus = [1e+07 1e+07]
- Geff = [1.13122e+06 1.13122e+06; 1.13122e+06 1.13122e+06]
- Yeff = [5.49451e+06 5.49451e+06; 5.49451e+06 5.49451e+06]
- betaeff = [0 -0.215454; -0.215454 -0.215454]
- coeffFrict = [0.5 0.5; 0.5 0.5]
- coeffRollFrict = [0 0.05; 0.05 0.05]
- coefficientRestitution = [1 0.5; 0.5 0.5]
- coefficientRestitutionLog = [0 -0.693147; -0.693147 -0.693147]
-==== WALL ywalls1 GLOBAL PROPERTIES ====
-==== WALL ywalls2 GLOBAL PROPERTIES ====
- poissonsRatio = [0.3 0.3]
- youngsModulus = [1e+07 1e+07]
- Geff = [1.13122e+06 1.13122e+06; 1.13122e+06 1.13122e+06]
- Yeff = [5.49451e+06 5.49451e+06; 5.49451e+06 5.49451e+06]
- betaeff = [0 -0.215454; -0.215454 -0.215454]
- coeffFrict = [0.5 0.5; 0.5 0.5]
- coeffRollFrict = [0 0.05; 0.05 0.05]
- coefficientRestitution = [1 0.5; 0.5 0.5]
- coefficientRestitutionLog = [0 -0.693147; -0.693147 -0.693147]
-==== WALL ywalls2 GLOBAL PROPERTIES ====
-==== WALL zwalls1 GLOBAL PROPERTIES ====
- poissonsRatio = [0.3 0.3]
- youngsModulus = [1e+07 1e+07]
- Geff = [1.13122e+06 1.13122e+06; 1.13122e+06 1.13122e+06]
- Yeff = [5.49451e+06 5.49451e+06; 5.49451e+06 5.49451e+06]
- betaeff = [0 -0.215454; -0.215454 -0.215454]
- coeffFrict = [0.5 0.5; 0.5 0.5]
- coeffRollFrict = [0 0.05; 0.05 0.05]
- coefficientRestitution = [1 0.5; 0.5 0.5]
- coefficientRestitutionLog = [0 -0.693147; -0.693147 -0.693147]
-==== WALL zwalls1 GLOBAL PROPERTIES ====
-==== WALL zwalls2 GLOBAL PROPERTIES ====
- poissonsRatio = [0.3 0.3]
- youngsModulus = [1e+07 1e+07]
- Geff = [1.13122e+06 1.13122e+06; 1.13122e+06 1.13122e+06]
- Yeff = [5.49451e+06 5.49451e+06; 5.49451e+06 5.49451e+06]
- betaeff = [0 -0.215454; -0.215454 -0.215454]
- coeffFrict = [0.5 0.5; 0.5 0.5]
- coeffRollFrict = [0 0.05; 0.05 0.05]
- coefficientRestitution = [1 0.5; 0.5 0.5]
- coefficientRestitutionLog = [0 -0.693147; -0.693147 -0.693147]
-==== WALL zwalls2 GLOBAL PROPERTIES ====
-Setting up run at Thu Jul  3 12:43:18 2025
+Setting up run at Sat Jul  5 12:16:48 2025
 
-Memory usage per processor = 22.5436 Mbytes
+Memory usage per processor = 22.5435 Mbytes
     Step    Atoms            rke          kin_e           vmax            CPU           Time 
        1        2              0  0.00050104329            0.1              0          1e-05 
-    1000        2              0  0.00050104329            0.1    0.024540888           0.01 
-    2000        2  2.2872558e-05  0.00017491438     0.10675477    0.049224682           0.02 
-    3000        2  2.2682317e-05   0.0001733307     0.10614263    0.073331912           0.03 
-    4000        2  2.2682317e-05   0.0001733307     0.10614263     0.09842034           0.04 
-    5000        2  2.2682317e-05   0.0001733307     0.10614263     0.12241977           0.05 
-    6000        2  2.2682317e-05   0.0001733307     0.10614263     0.14694732           0.06 
-    7000        2  2.2682317e-05   0.0001733307     0.10614263     0.17283842           0.07 
-    8000        2  2.2682317e-05   0.0001733307     0.10614263     0.19757505           0.08 
-    9000        2  2.2682317e-05   0.0001733307     0.10614263     0.22259462           0.09 
-   10000        2  2.2682317e-05   0.0001733307     0.10614263     0.24848797            0.1 
-Loop time of 0.248492 on 1 procs for 9999 steps with 2 atoms, finish time Thu Jul  3 12:43:18 2025
+    1000        2              0  0.00050104329            0.1    0.028318715           0.01 
+    2000        2              0  0.00050104329            0.1    0.057229199           0.02 
+    3000        2              0  0.00050104329            0.1    0.084630368           0.03 
+    4000        2              0  0.00050104329            0.1     0.11844105           0.04 
+    5000        2              0  0.00050104329            0.1     0.14401553           0.05 
+    6000        2              0  0.00050104329            0.1     0.17019935           0.06 
+    7000        2              0  0.00050104329            0.1     0.19487306           0.07 
+    8000        2              0  0.00050104329            0.1     0.22209148           0.08 
+    9000        2              0  0.00050104329            0.1     0.24795785           0.09 
+   10000        2              0  0.00050104329            0.1     0.27258543            0.1 
+Loop time of 0.272595 on 1 procs for 9999 steps with 2 atoms, finish time Sat Jul  5 12:16:48 2025
 
 
-Pair  time (%) = 0.0139674 (5.62085)
-Neigh time (%) = 4.647e-05 (0.0187008)
-Comm  time (%) = 0.000480583 (0.1934)
-Outpt time (%) = 0.225231 (90.6393)
-Other time (%) = 0.00876608 (3.52771)
+Pair  time (%) = 0.00352508 (1.29315)
+Neigh time (%) = 7.0915e-05 (0.0260147)
+Comm  time (%) = 0.000454616 (0.166773)
+Outpt time (%) = 0.258042 (94.6611)
+Other time (%) = 0.0105031 (3.85298)
 
 Nlocal:    2 ave 2 max 2 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 Nghost:    0 ave 0 max 0 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-Neighs:    1 ave 1 max 1 min
+Neighs:    0 ave 0 max 0 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 
-Total # of neighbors = 1
-Ave neighs/atom = 0.5
-Neighbor list builds = 20
+Total # of neighbors = 0
+Ave neighs/atom = 0
+Neighbor list builds = 19
 Dangerous builds = 0

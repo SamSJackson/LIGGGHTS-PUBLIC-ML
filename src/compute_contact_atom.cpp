@@ -68,7 +68,6 @@
 // sam:
 #ifdef SUPERQUADRIC_ACTIVE_FLAG
   #include "math_extra_liggghts_superquadric.h" 
-  #include <iostream>
 #endif 
 
 using namespace LAMMPS_NS;
@@ -224,38 +223,27 @@ void ComputeContactAtom::compute_peratom()
 				if (rsq > radsumsq) continue;
 				// narrow-phase
 
-				// TODO: move this into superquadric.cpp as initialiser 
-				shapeA[0] = shape[i][0];
-				shapeA[1] = shape[i][1];
-				shapeA[2] = shape[i][2];
+				// TODO: move this into superquadric.cpp as initialiser
+				for (size_t ii=3; ii--;) {
+					shapeA[ii] = shape[i][ii];
+					shapeB[ii] = shape[j][ii];
+				}
 
-				shapeB[0] = shape[j][0];
-				shapeB[1] = shape[j][1];
-				shapeB[2] = shape[j][2];
+				for (size_t ii=2; ii--;) {
+					blockA[ii] = blockiness[i][ii];
+					blockB[ii] = blockiness[j][ii];
+				}
 
-				blockA[0] = blockiness[i][0];
-				blockA[1] = blockiness[i][1];
+				for (size_t ii=4; ii--;) {
+					quatA[ii] = quaternion[i][ii];
+					quatB[ii] = quaternion[j][ii];
+				}
 
-				blockB[0] = blockiness[j][0];
-				blockB[1] = blockiness[j][1];
+				for (size_t ii=3; ii--;) {
+					xi[ii] = x[i][ii];
+					xj[ii] = x[j][ii];
+				}
 
-				quatA[0] = quaternion[i][0];
-				quatA[1] = quaternion[i][1];
-				quatA[2] = quaternion[i][2];
-				quatA[3] = quaternion[i][3];
-
-				quatB[0] = quaternion[j][0];
-				quatB[1] = quaternion[j][1];
-				quatB[2] = quaternion[j][2];
-				quatB[3] = quaternion[j][3];
-
-				xi[0] = x[i][0];
-				xi[1] = x[i][1];
-				xi[2] = x[i][2];
-
-				xj[0] = x[j][0];
-				xj[1] = x[j][1];
-				xj[2] = x[j][2];
 				// move above into superquadric.cpp 
 
 				particleA = Superquadric(xi, quatA, shapeA, blockA);
@@ -270,9 +258,7 @@ void ComputeContactAtom::compute_peratom()
 						error  
 				);
 
-				fprintf(screen, "Completed this: %d\n", fail);
-
-				if (fail) {
+				if (!fail) {
 					contact[i] += 1.0;
 					contact[j] += 1.0;
 				}

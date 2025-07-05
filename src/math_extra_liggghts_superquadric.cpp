@@ -63,6 +63,9 @@
 #include <map>
 #include "math_const.h"
 
+//sam:
+#include <iostream>
+
 #define PHI_INV 0.61803398874989479
 
 namespace MathExtraLiggghtsNonspherical {
@@ -794,6 +797,8 @@ void calc_contact_point(Superquadric *particleA, Superquadric *particleB,
   double merit01, merit02, merit0;
 
   double res01 = calc_F(particleA, particleB, fi1, fj1, gradA1, gradB1, NULL, NULL, initial_point1, &mu1, F1, &merit01);
+	
+
   if(merit01 < tol1) {
     LAMMPS_NS::vectorCopy3D(initial_point1, result_point);
     LAMMPS_NS::vectorCopy3D(gradA1, particleA->gradient);
@@ -1424,6 +1429,7 @@ bool calc_contact_point_if_no_previous_point_available(Superquadric *particleA,
       for(int k = 0; k < 3; k++)
         contact_point[k] = ratio*particleB->center[k] + (1.0 - ratio)*particleA->center[k]; //contact point solution for spheres
     }
+
     LAMMPS_NS::vectorCopy3D(contact_point, pre_estimation);
     MathExtraLiggghtsNonspherical::calc_contact_point(particleA, particleB,
         ratio, pre_estimation, contact_point, fi, fj, &fail_flag, error);
@@ -1433,6 +1439,7 @@ bool calc_contact_point_if_no_previous_point_available(Superquadric *particleA,
     particleA->set_blockiness(ni0, ni1);
     particleB->set_blockiness(nj0, nj1);
   }
+
   return fail_flag;
 }
 
